@@ -7,6 +7,7 @@ const usageRoutes = require('./routes/usageRoutes');
 const goalRoutes = require('./routes/goalRoutes'); // Adjust the path if necessary
 const taskRoutes = require('./routes/taskRoutes');
 const notificationRoutes = require('./routes/notificationRoutes');
+const path = require('path');
 
 dotenv.config(); // Load environment variables
 
@@ -24,6 +25,8 @@ app.use('/api/usage', usageRoutes);
 app.use('/api/goals', goalRoutes);
 app.use('/api/tasks', taskRoutes);
 app.use('/api/notifications', notificationRoutes);
+app.use('/api/usage', usageRoutes);
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Port Configuration
 const PORT = process.env.PORT || 5000;

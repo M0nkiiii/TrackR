@@ -3,8 +3,9 @@ const router = express.Router();
 const authenticateToken = require('../middleware/authMiddleware');
 const UsageData = require('../models/UsageData');
 const { Sequelize } = require('sequelize');
-const { getUsageData, updateUsageData } = require('../controllers/usageController'); 
+const { getUsageData, updateUsageData, getWeeklyUsage, getDailyUsage, triggerPrediction } = require('../controllers/usageController');
 const { protect } = require('../middleware/authMiddleware');
+
 
 // Route to track screen usage
 router.post('/track', authenticateToken, async (req, res) => {
@@ -54,10 +55,26 @@ router.get('/dashboard', authenticateToken, async (req, res) => {
     }
 });
 
+
+//fetch weekly usage data 
+
+
 // Route to get usage data
 router.get('/usage', getUsageData); // Make sure 'getUsageData' is defined
 
 // Route to update usage data
 router.put('/usage', updateUsageData); // Make sure 'updateUsageData' is defined
+
+// Weekly usage route
+router.get('/weekly/:userId', authenticateToken, getWeeklyUsage);
+
+// Route to fetch daily usage
+router.get('/daily/:userId', authenticateToken, getDailyUsage);
+
+// Route to trigger prediction
+router.get('/predict/:userId', authenticateToken, triggerPrediction);
+
+
+
 
 module.exports = router;

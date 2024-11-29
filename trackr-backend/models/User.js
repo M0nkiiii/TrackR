@@ -21,7 +21,7 @@ const User = sequelize.define('User', {
     allowNull: false,
   },
   profilePicture: {
-    type: DataTypes.STRING, // Assuming URLs for profile pictures
+    type: DataTypes.STRING,
     allowNull: true,
   },
   phoneNumber: {

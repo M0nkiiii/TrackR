@@ -16,7 +16,7 @@ const authenticateToken = (req, res, next) => {
         }
 
         console.log('Authenticated user:', user); // Debugging
-        req.user = user; // Attach user data to request
+        req.user = user; // Attach decoded payload (id) to request
         next();
     });
 };
